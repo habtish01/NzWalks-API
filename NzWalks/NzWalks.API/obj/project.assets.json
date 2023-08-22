@@ -3920,19 +3920,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Heal Africa\\.nuget\\packages\\": {}
+    "C:\\Users\\OpianDev\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
+      "projectUniqueName": "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
       "projectName": "NzWalks.API",
-      "projectPath": "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
-      "packagesPath": "C:\\Users\\Heal Africa\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\obj\\",
+      "projectPath": "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
+      "packagesPath": "C:\\Users\\OpianDev\\.nuget\\packages\\",
+      "outputPath": "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Heal Africa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\OpianDev\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4000,7 +4000,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
