@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using NzWalks.API.Data;
+using NzWalks.API.Helper;
+using NzWalks.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +19,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDataProtection();
 //inject the database context here to use everywhere
 builder.Services.AddDbContext<NzWalksDbContext>(context => context.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
-
+builder.Services.AddScoped<IRegionRepository, RegionRepository>();  
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles)); 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
