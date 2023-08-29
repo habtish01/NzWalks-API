@@ -10,7 +10,10 @@ namespace NzWalks.API.Helper
         {
             CreateMap<Region, RegionDTO>().ReverseMap();
                 //.ForMember(x => x.Name, opt => opt.MapFrom(x => x.Name));//when member of each data models are diferrent in name 
-             CreateMap<Region,CreateRegionDTO>().ReverseMap().ForMember(x=>x.RegionImageUrl,opt=>opt.MapFrom(x=>x.RegiionImageUrl));   
+            CreateMap<Region,CreateRegionDTO>().ReverseMap().
+             ForMember(x=>x.RegionImageUrl,opt=>opt.MapFrom(x=>x.RegiionImageUrl));
+            CreateMap<Walk, WalkDTO>().ReverseMap();
+            CreateMap<Walk, CreateWalkDTO>().ReverseMap();
         }
 
     }

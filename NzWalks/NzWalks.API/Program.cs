@@ -20,6 +20,7 @@ builder.Services.AddDataProtection();
 //inject the database context here to use everywhere
 builder.Services.AddDbContext<NzWalksDbContext>(context => context.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();  
+builder.Services.AddScoped<IWalksRepository, WalksRepository>();  
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles)); 
 var app = builder.Build();
 

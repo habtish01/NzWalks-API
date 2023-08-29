@@ -152,3 +152,5 @@ G:\Projects\Dallol Projects\NzWalks-API\NzWalks\NzWalks.API\obj\Debug\net7.0\NzW
 G:\Projects\Dallol Projects\NzWalks-API\NzWalks\NzWalks.API\obj\Debug\net7.0\ref\NzWalks.API.dll
 D:\Projects\NzWalks-API\NzWalks\NzWalks.API\bin\Debug\net7.0\AutoMapper.dll
 D:\Projects\NzWalks-API\NzWalks\NzWalks.API\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+G:\Projects\Dallol Projects\NzWalks-API\NzWalks\NzWalks.API\bin\Debug\net7.0\AutoMapper.dll
+G:\Projects\Dallol Projects\NzWalks-API\NzWalks\NzWalks.API\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
