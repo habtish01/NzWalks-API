@@ -31,13 +31,14 @@ namespace NzWalks.API.Repositories
 
         public async Task<List<Walk>> GetAllASync()
         {
-         var regions=await context.walks.ToListAsync();
+         var regions=await context.walks.Include("Region").Include("Difficulty").ToListAsync();
             return regions;
         }
 
-        public async Task<Walk> GetByIdAsync(Guid id)
+        public async Task<Walk?> GetByIdAsync(Guid id)
         {
-            var region = await context.walks.FindAsync(id);
+            var region = await context.walks.Include("Region").Include("Difficulty").FirstOrDefaultAsync(x=>x.Id==id);
+            if(region == null) { return null; } 
             return region;
         }
 

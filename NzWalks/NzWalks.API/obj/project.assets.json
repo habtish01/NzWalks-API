@@ -88,7 +88,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.OpenApi/7.0.7": {
+      "Microsoft.AspNetCore.OpenApi/7.0.10": {
         "type": "package",
         "dependencies": {
           "Microsoft.OpenApi": "1.4.3"
@@ -1356,10 +1356,10 @@
         "logo.png"
       ]
     },
-    "Microsoft.AspNetCore.OpenApi/7.0.7": {
-      "sha512": "6E1I154QELFjQ4RvSWwZAlZrvB2Dy3aOkcYAQ+E4NsyqwKqFbG10HeWp/WJfq+2btUz1dKzmNMwnADf8WBk/0w==",
+    "Microsoft.AspNetCore.OpenApi/7.0.10": {
+      "sha512": "p5LiYt1mFJdS70zyHoydahohko2pLIoXiXwANRZGYYyTXcYNQpNUOt+At+lUgGgRwta28sUKVhy2W/93j0qwhA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.openapi/7.0.7",
+      "path": "microsoft.aspnetcore.openapi/7.0.10",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1367,7 +1367,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll",
         "lib/net7.0/Microsoft.AspNetCore.OpenApi.xml",
-        "microsoft.aspnetcore.openapi.7.0.7.nupkg.sha512",
+        "microsoft.aspnetcore.openapi.7.0.10.nupkg.sha512",
         "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
@@ -3973,7 +3973,7 @@
     "net7.0": [
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
-      "Microsoft.AspNetCore.OpenApi >= 7.0.7",
+      "Microsoft.AspNetCore.OpenApi >= 7.0.10",
       "Microsoft.EntityFrameworkCore >= 7.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.10",
@@ -3981,19 +3981,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\OpianDev\\.nuget\\packages\\": {}
+    "C:\\Users\\Heal Africa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
+      "projectUniqueName": "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
       "projectName": "NzWalks.API",
-      "projectPath": "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
-      "packagesPath": "C:\\Users\\OpianDev\\.nuget\\packages\\",
-      "outputPath": "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\obj\\",
+      "projectPath": "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
+      "packagesPath": "C:\\Users\\Heal Africa\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\OpianDev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Heal Africa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4029,7 +4029,7 @@
           },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
-            "version": "[7.0.7, )"
+            "version": "[7.0.10, )"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
@@ -4069,7 +4069,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

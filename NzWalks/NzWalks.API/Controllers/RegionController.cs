@@ -6,6 +6,7 @@ using NzWalks.API.Data;
 using NzWalks.API.DTOs;
 using NzWalks.API.Models.Domain;
 using NzWalks.API.Repositories;
+using NzWalks.API.Validation;
 
 namespace NzWalks.API.Controllers
 {
@@ -55,7 +56,7 @@ namespace NzWalks.API.Controllers
 
         #region Create Method
         [HttpPost]
-
+        [ActionAttributeFilter]
         public async Task<RegionDTO> CreateRegion([FromBody]CreateRegionDTO regionDto)
         {
             if (regionDto == null)
@@ -82,7 +83,9 @@ namespace NzWalks.API.Controllers
 
         #region Update Method
         [HttpPut]
-        public async Task<RegionDTO> Update(CreateRegionDTO regionDto,Guid id)
+        [Route("{id:Guid}")]
+        [ActionAttributeFilter]
+        public async Task<RegionDTO> Update([FromBody]CreateRegionDTO regionDto,[FromRoute]Guid id)
         {
             if (regionDto == null) return null;
             var region=mapper.Map<Region>(regionDto);

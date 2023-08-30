@@ -14,6 +14,7 @@ namespace NzWalks.API.Helper
              ForMember(x=>x.RegionImageUrl,opt=>opt.MapFrom(x=>x.RegiionImageUrl));
             CreateMap<Walk, WalkDTO>().ReverseMap();
             CreateMap<Walk, CreateWalkDTO>().ReverseMap();
+            CreateMap<Difficulty, DifficultyDto>().ReverseMap();
         }
 
     }

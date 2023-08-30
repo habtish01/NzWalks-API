@@ -3,15 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using NzWalks.API.DTOs;
 using NzWalks.API.Models.Domain;
 using NzWalks.API.Repositories;
+using NzWalks.API.Validation;
 
 namespace NzWalks.API.Controllers
 {
-    public class WalkController: BaseController
+    public class WalkController : BaseController
     {
         private readonly IMapper mapper;
         private readonly IWalksRepository repo;
 
-        public WalkController(IMapper mapper,IWalksRepository repo)
+        public WalkController(IMapper mapper, IWalksRepository repo)
         {
             this.mapper = mapper;
             this.repo = repo;
@@ -20,15 +21,16 @@ namespace NzWalks.API.Controllers
         [HttpGet]
         public async Task<List<WalkDTO>> GetAllWalks()
         {
-            var regions=await repo.GetAllASync();
+            var regions = await repo.GetAllASync();
             if (regions == null) return null;
             //mapping
-            var regionsDto=mapper.Map<List<WalkDTO>>(regions);   
+            var regionsDto = mapper.Map<List<WalkDTO>>(regions);
             return regionsDto;
         }
 
         [HttpGet]
-        public async Task<WalkDTO> GetWalk(Guid id)
+        [Route("{id:Guid}")]
+        public async Task<WalkDTO> GetWalk([FromRoute]Guid id)
         {
             var region=await repo.GetByIdAsync(id);
             if (region== null) return null;
@@ -39,8 +41,8 @@ namespace NzWalks.API.Controllers
         }
 
         [HttpPost]
-
-        public async Task<WalkDTO> CreateWalk(CreateWalkDTO walk)
+        [ActionAttributeFilter]
+        public async Task<WalkDTO> CreateWalk([FromBody]CreateWalkDTO walk)
         {
             if (walk == null) return null;
             //mapping
@@ -52,7 +54,9 @@ namespace NzWalks.API.Controllers
         }
 
         [HttpPut]
-        public async Task<WalkDTO> UpdateWalk(Guid id,CreateWalkDTO CreatewalkDto)
+        [Route("{id:Guid}")]
+        [ActionAttributeFilter]
+        public async Task<WalkDTO> UpdateWalk([FromRoute]Guid id,[FromBody]CreateWalkDTO CreatewalkDto)
         {
             if (CreatewalkDto== null) return null;
             //mapping

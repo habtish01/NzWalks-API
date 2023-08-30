@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj": {}
+    "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj": {}
   },
   "projects": {
-    "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj": {
+    "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
+        "projectUniqueName": "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
         "projectName": "NzWalks.API",
-        "projectPath": "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
-        "packagesPath": "C:\\Users\\OpianDev\\.nuget\\packages\\",
-        "outputPath": "G:\\Projects\\Dallol Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\obj\\",
+        "projectPath": "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\NzWalks.API.csproj",
+        "packagesPath": "C:\\Users\\Heal Africa\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\NzWalks-API\\NzWalks\\NzWalks.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\OpianDev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Heal Africa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -50,7 +50,7 @@
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[7.0.7, )"
+              "version": "[7.0.10, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -90,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
