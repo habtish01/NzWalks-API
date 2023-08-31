@@ -19,9 +19,9 @@ namespace NzWalks.API.Controllers
         }
 
         [HttpGet]
-        public async Task<List<WalkDTO>> GetAllWalks()
+        public async Task<List<WalkDTO>> GetAllWalks([FromQuery] string? filteron,[FromQuery]string? filterquery)
         {
-            var regions = await repo.GetAllASync();
+            var regions = await repo.GetAllASync(filteron,filterquery);
             if (regions == null) return null;
             //mapping
             var regionsDto = mapper.Map<List<WalkDTO>>(regions);
@@ -59,9 +59,10 @@ namespace NzWalks.API.Controllers
         public async Task<WalkDTO> UpdateWalk([FromRoute]Guid id,[FromBody]CreateWalkDTO CreatewalkDto)
         {
             if (CreatewalkDto== null) return null;
-            //mapping
-            var walk=mapper.Map<Walk>(CreatewalkDto);
-            var walkDomain = await repo.UpdaeAsync(id, walk);
+          
+           
+
+            var walkDomain = await repo.UpdaeAsync(id, CreatewalkDto);
             if (walkDomain == null) return null;
             //mapping
            var walkDto= mapper.Map<WalkDTO>(walkDomain);

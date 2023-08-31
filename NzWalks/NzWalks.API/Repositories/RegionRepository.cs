@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using NzWalks.API.Data;
+using NzWalks.API.DTOs;
 using NzWalks.API.Models.Domain;
 
 namespace NzWalks.API.Repositories
@@ -7,10 +9,12 @@ namespace NzWalks.API.Repositories
     public class RegionRepository : IRegionRepository
     {
         private readonly NzWalksDbContext context;
+        private readonly IMapper mapper;
 
-        public RegionRepository(NzWalksDbContext context)
+        public RegionRepository(NzWalksDbContext context,IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
         public async Task<Region?> CreateAsync(Region region)
         {
@@ -41,14 +45,16 @@ namespace NzWalks.API.Repositories
             return region;
         }
 
-        public async Task<Region?> UpdateAsync(Guid RegionId,Region region)
+        public async Task<Region?> UpdateAsync(Guid RegionId,CreateRegionDTO region)
         {
-            var Existedregion=await context.region.FirstOrDefaultAsync(u=>u.Id==RegionId);
+            var Existedregion=await context.region.AsNoTracking().FirstOrDefaultAsync(u=>u.Id==RegionId);
             //context.region.Update(region);  
             if (Existedregion == null) return null;
-            Existedregion.Code= region.Code;    
-            Existedregion.Name= region.Name;
-            Existedregion.RegionImageUrl= region.RegionImageUrl;    
+            //Existedregion.Code= region.Code;    
+            //Existedregion.Name= region.Name;
+            //Existedregion.RegionImageUrl= region.RegionImageUrl;
+            context.region.Attach(Existedregion);   //atach the context with the retrived entity to be tracked by entity
+            mapper.Map(region, Existedregion);//we made a changes in the main model but not awared by the cotext be cause we as no tracking method
             await context.SaveChangesAsync();
            return Existedregion;    
 

@@ -88,9 +88,9 @@ namespace NzWalks.API.Controllers
         public async Task<RegionDTO> Update([FromBody]CreateRegionDTO regionDto,[FromRoute]Guid id)
         {
             if (regionDto == null) return null;
-            var region=mapper.Map<Region>(regionDto);
+          
 
-            var UpdatedRegion =await repo.UpdateAsync(id, region);
+            var UpdatedRegion =await repo.UpdateAsync(id, regionDto);
             var regionsDto =mapper.Map<RegionDTO>(UpdatedRegion);
 
             return regionsDto;  
