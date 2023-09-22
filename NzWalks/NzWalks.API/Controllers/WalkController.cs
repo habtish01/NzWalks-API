@@ -19,9 +19,10 @@ namespace NzWalks.API.Controllers
         }
 
         [HttpGet]
-        public async Task<List<WalkDTO>> GetAllWalks([FromQuery] string? filteron,[FromQuery]string? filterquery)
+        public async Task<List<WalkDTO>> GetAllWalks([FromQuery] string? filteron,[FromQuery]string? filterquery,
+            [FromQuery] string? sortBy, [FromQuery] bool? isAscending,int pageNumber=1,int pageSize=1000)
         {
-            var regions = await repo.GetAllASync(filteron,filterquery);
+            var regions = await repo.GetAllASync(filteron,filterquery,sortBy,isAscending ?? true,pageNumber,pageSize);
             if (regions == null) return null;
             //mapping
             var regionsDto = mapper.Map<List<WalkDTO>>(regions);

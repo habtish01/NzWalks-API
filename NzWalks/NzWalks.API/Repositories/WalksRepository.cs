@@ -17,7 +17,7 @@ namespace NzWalks.API.Repositories
             this.mapper = mapper;
         }
 
-        public IMapper Mapper => mapper;
+        public IMapper Mapper => mapper;//for update functionality
 
         public async Task<Walk> CreateAsync(Walk walk)
         {
@@ -36,19 +36,34 @@ namespace NzWalks.API.Repositories
             return region;
         }
 
-        public async Task<List<Walk>> GetAllASync(string? filteron, string? filterquery)
+        public async Task<List<Walk>> GetAllASync(string? filteron, string? filterquery,
+           string? sortBy = null, bool isAscending = true, int pageNumber = 1, int pageSize = 1000)
         {
-            var region = context.walks.Include("Region").Include("Difficulty").AsQueryable();
+            var walks = context.walks.Include("Region").Include("Difficulty").AsQueryable();
             if (String.IsNullOrWhiteSpace(filteron)==false && String.IsNullOrWhiteSpace(filterquery)==false)
             {
                
                 if (filteron.Equals("Name", StringComparison.OrdinalIgnoreCase))
                 {
-                    region=region.Where(x => x.Name.Contains(filterquery));
+                    walks = walks.Where(x => x.Name.Contains(filterquery));
                 }
 
             }
-            return await region.ToListAsync(); 
+            if (String.IsNullOrWhiteSpace(sortBy) == true)
+            {
+                  if(sortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    walks= isAscending ? walks.OrderBy(x=>x.Name): walks.OrderByDescending(x=>x.Name);   
+                }
+                  if(sortBy.Equals("Length", StringComparison.OrdinalIgnoreCase))
+                {
+                    walks = isAscending ? walks.OrderBy(x => x.lengthInKm) : walks.OrderByDescending(x => x.lengthInKm);
+
+                }
+            }
+            var skipWalks = (pageNumber - 1) * pageSize;//formula for pagination
+             //walks=walks.Skip(skipWalks).Take(pageSize); 
+            return await walks.Skip(skipWalks).Take(pageSize).ToListAsync(); 
 
 
             // var regions=await context.walks.Include("Region").Include("Difficulty").ToListAsync();
