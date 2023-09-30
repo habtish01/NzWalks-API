@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using NzWalks.API.Validation;
 
 namespace NzWalks.API.Controllers
 {
-
+    [Authorize]
     public class RegionController : BaseController
     {
         private readonly IRegionRepository repo;
@@ -24,7 +25,7 @@ namespace NzWalks.API.Controllers
 
         #region Get All Method
         [HttpGet]
-        
+        [AllowAnonymous]
         public async Task<List<RegionDTO>> GetAll()
         {
             var regions= await repo.GetAllAsync();

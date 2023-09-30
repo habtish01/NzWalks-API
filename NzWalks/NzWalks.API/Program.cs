@@ -21,7 +21,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDataProtection();
 //inject the database context here to use everywhere
-builder.Services.AddDbContext<NzWalksDbContext>(context => context.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
+builder.Services.AddDbContext<NzWalksDbContext>(options => 
+options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
+
+builder.Services.AddDbContext<NzWalksAuthDbContext>(options=>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DbAuthConnection")));
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();  
 builder.Services.AddScoped<IWalksRepository, WalksRepository>();  
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));

@@ -46,10 +46,11 @@ namespace NzWalks.API.Repositories
                 if (filteron.Equals("Name", StringComparison.OrdinalIgnoreCase))
                 {
                     walks = walks.Where(x => x.Name.Contains(filterquery));
+
                 }
 
             }
-            if (String.IsNullOrWhiteSpace(sortBy) == true)
+            if (String.IsNullOrWhiteSpace(sortBy) == false)
             {
                   if(sortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
                 {
