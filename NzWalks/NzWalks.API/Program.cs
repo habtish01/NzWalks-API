@@ -6,6 +6,10 @@ using NzWalks.API.Helper;
 using NzWalks.API.Repositories;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
+using System.Security.Cryptography.Xml;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +20,44 @@ var builder = WebApplication.CreateBuilder(args);
 //sigleton--the service is called throught the lifetime of the project
 
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();  
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    {
+    options.SwaggerDoc("v1",new OpenApiInfo { Title="NzWalks Api",Version="v1"});
+        options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+        {
+            Name="Authorization",
+            In=ParameterLocation.Header,
+            Type=SecuritySchemeType.ApiKey,
+            Scheme=JwtBearerDefaults.AuthenticationScheme   
+        });
+        options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+              new OpenApiSecurityScheme
+              {
+                  Reference=new OpenApiReference
+                  {
+                      Id=JwtBearerDefaults.AuthenticationScheme,
+                      Type=ReferenceType.SecurityScheme
+                  },
+                  Name=JwtBearerDefaults.AuthenticationScheme ,
+                  Scheme="Oauth2",
+                  In=ParameterLocation.Header
+
+              },
+              new List<string>()
+            }
+        });
+    }
+});
+
+
 builder.Services.AddDataProtection();
+
 //inject the database context here to use everywhere
 builder.Services.AddDbContext<NzWalksDbContext>(options => 
 options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
@@ -28,7 +66,28 @@ builder.Services.AddDbContext<NzWalksAuthDbContext>(options=>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DbAuthConnection")));
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();  
 builder.Services.AddScoped<IWalksRepository, WalksRepository>();  
+builder.Services.AddScoped<ITokenRepository, TokenRepository>(); 
+builder.Services.AddScoped<IImageRepository, LocalUploadImageRepository>();    
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
+
+//Identity services
+builder.Services.AddIdentityCore<IdentityUser>()
+    .AddRoles<IdentityRole>()
+    .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("NzWalks")
+    .AddEntityFrameworkStores<NzWalksAuthDbContext>()
+    .AddDefaultTokenProviders();
+
+//configure some settings for password options
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 8;
+    options.Password.RequiredUniqueChars = 1;
+
+});
 //authentication service
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -41,7 +100,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         ValidateLifetime = true,
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:secretKey"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
     });   
 
 
@@ -60,6 +119,11 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+    RequestPath = "/Images"
+});
 
 app.MapControllers();
 
