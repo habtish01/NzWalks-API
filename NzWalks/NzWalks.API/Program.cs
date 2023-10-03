@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.OpenApi.Models;
 using System.Security.Cryptography.Xml;
 using Microsoft.Extensions.FileProviders;
+using Serilog;
+using NzWalks.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,13 @@ var builder = WebApplication.CreateBuilder(args);
 //scoped--the service called when every request is excuted
 //transient--the service is called when this service is requested
 //sigleton--the service is called throught the lifetime of the project
+
+var logger = new LoggerConfiguration()
+    .WriteTo.File("Logs/Applogfile.txt", rollingInterval:RollingInterval.Minute)
+    .MinimumLevel.Warning()
+    .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();  
@@ -112,6 +121,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 

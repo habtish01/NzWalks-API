@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core.Serialization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using NzWalks.API.DTOs;
 using NzWalks.API.Models.Domain;
 using NzWalks.API.Repositories;
 using NzWalks.API.Validation;
+using System.Text.Json;
 
 namespace NzWalks.API.Controllers
 {
@@ -16,23 +18,29 @@ namespace NzWalks.API.Controllers
     {
         private readonly IRegionRepository repo;
         private readonly IMapper mapper;
+        private readonly ILogger logger;
 
-        public RegionController(IRegionRepository repo,IMapper mapper)
+        public RegionController(IRegionRepository repo,IMapper mapper,ILogger<RegionController> logger)
         {
             this.repo = repo;
             this.mapper = mapper;
+            this.logger = logger;
         }
 
         #region Get All Method
         [HttpGet]
-        [Authorize(Roles ="Reader")]
+       // [Authorize(Roles ="Reader")]
         public async Task<List<RegionDTO>> GetAll()
         {
+            logger.LogInformation("Get All Regions Started");
+            logger.LogError("Thie is error log");
+            logger.LogWarning("this is warning log");
+            logger.LogDebug("this is debug log");
             var regions= await repo.GetAllAsync();
             if (regions == null) return null;
             
-            var regionDto=mapper.Map<List<RegionDTO>>(regions); 
-
+            var regionDto=mapper.Map<List<RegionDTO>>(regions);
+            logger.LogWarning($"Warning Test: {JsonSerializer.Serialize(regionDto)}");
             return regionDto;
         }
         #endregion
@@ -40,7 +48,7 @@ namespace NzWalks.API.Controllers
         #region Get By Id Method
         [HttpGet]
         [Route("{id:Guid}")]
-        [Authorize(Roles = "Reader")]
+       // [Authorize(Roles = "Reader")]
         public async Task<RegionDTO> GetById([FromRoute] Guid id)
         {
             //accessing the domain model from database

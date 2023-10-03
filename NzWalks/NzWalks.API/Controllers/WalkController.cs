@@ -26,6 +26,7 @@ namespace NzWalks.API.Controllers
             if (regions == null) return null;
             //mapping
             var regionsDto = mapper.Map<List<WalkDTO>>(regions);
+            throw new Exception("Exception happend");
             return regionsDto;
         }
 

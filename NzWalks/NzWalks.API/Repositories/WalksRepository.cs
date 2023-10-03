@@ -64,7 +64,7 @@ namespace NzWalks.API.Repositories
             }
             var skipWalks = (pageNumber - 1) * pageSize;//formula for pagination
              //walks=walks.Skip(skipWalks).Take(pageSize); 
-            return await walks.Take(skipWalks..(skipWalks+pageSize)).ToListAsync(); 
+            return await walks.Skip(skipWalks).Take(pageSize).ToListAsync(); 
 
 
             // var regions=await context.walks.Include("Region").Include("Difficulty").ToListAsync();
