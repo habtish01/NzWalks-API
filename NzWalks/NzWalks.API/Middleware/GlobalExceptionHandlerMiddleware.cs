@@ -1,5 +1,6 @@
 ﻿using NzWalks.API.DTOs;
 using System.Net;
+using Serilog;
 
 namespace NzWalks.API.Middleware
 {
@@ -24,14 +25,14 @@ namespace NzWalks.API.Middleware
             catch (Exception ex)
             {
                 var errorId = Guid.NewGuid();
-                logger.LogError(ex,$"{errorId} : {ex.Message}"); 
+                Log.Error(ex,$"{errorId} : {ex.Message}"); 
                 //context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 context.Response.ContentType = "application/json";
 
                 Response response = new();
                 response.Id = errorId;
                 response.StatusCode= (int)HttpStatusCode.InternalServerError;       
-                response.ErrorMessage = "Something went wrong! we try to fix soon. we appologize for this!";
+                response.ErrorMessage =ex.Message;
                 await context.Response.WriteAsJsonAsync(response);
 
             }

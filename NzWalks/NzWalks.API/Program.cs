@@ -21,14 +21,18 @@ var builder = WebApplication.CreateBuilder(args);
 //transient--the service is called when this service is requested
 //sigleton--the service is called throught the lifetime of the project
 
-var logger = new LoggerConfiguration()
-    .WriteTo.File("Logs/Applogfile.txt", rollingInterval:RollingInterval.Minute)
-    .MinimumLevel.Warning()
-    .CreateLogger();
-builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(logger);
-
+//Log.Logger = new LoggerConfiguration()
+  //  .ReadFrom.Configuration(builder.Configuration).CreateLogger();
+//builder.Logging.ClearProviders();
+//builder.Logging.AddSerilog(logger);
+builder.Host.UseSerilog((context,configuration)=>
+    configuration.ReadFrom.Configuration(context.Configuration));
 builder.Services.AddControllers();
+//    x =>
+//{
+//    x.Filters.Add(typeof(GlobalFilterExceptionHandler));
+//});
+
 builder.Services.AddHttpContextAccessor();  
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -122,7 +126,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseSerilogRequestLogging();//to log requests coming to this api
 app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+
 
 app.UseHttpsRedirection();
 

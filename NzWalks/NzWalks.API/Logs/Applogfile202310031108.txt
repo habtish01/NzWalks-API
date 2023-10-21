@@ -1,3 +1,0 @@
-2023-10-03 11:08:36.376 +03:00 [ERR] Thie is error log
-2023-10-03 11:08:36.394 +03:00 [WRN] this is warning log
-2023-10-03 11:08:38.381 +03:00 [WRN] Warning Test: [{"Id":"7fff524e-6eb8-4d15-a00d-90057ef127a0","Name":"Amhara","Code":"AM","RegionImageUrl":"image.png"},{"Id":"1b283634-abe1-4710-b00c-9cd0a4d8b294","Name":"AJerbaja","Code":"AJ","RegionImageUrl":"image.png"},{"Id":"166702ef-0511-458b-a360-ce44344cc87a","Name":"Atached","Code":"Track","RegionImageUrl":"AsNoTracking.png"}]

@@ -1,0 +1,109 @@
+2023-10-21 08:59:25.265 +03:00 [Information] [User profile is available. Using '"C:\Users\Heal Africa\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.]
+
+2023-10-21 08:59:25.626 +03:00 [Information] [Application started. Press Ctrl+C to shut down.]
+
+2023-10-21 08:59:25.627 +03:00 [Information] [Hosting environment: "Development"]
+
+2023-10-21 08:59:25.627 +03:00 [Information] [Content root path: "D:\Projects\NzWalks-API\NzWalks\NzWalks.API"]
+
+2023-10-21 08:59:25.765 +03:00 [Information] [Request starting HTTP/2 GET https://localhost:44375/swagger - -]
+
+2023-10-21 08:59:25.958 +03:00 [Information] [Request finished HTTP/2 GET https://localhost:44375/swagger - - - 301 - - 195.3124ms]
+
+2023-10-21 08:59:25.959 +03:00 [Information] [Request starting HTTP/2 GET https://localhost:44375/swagger/index.html - -]
+
+2023-10-21 08:59:26.200 +03:00 [Information] [Request finished HTTP/2 GET https://localhost:44375/swagger/index.html - - - 200 - text/html;charset=utf-8 240.2637ms]
+
+2023-10-21 08:59:26.242 +03:00 [Information] [Request starting HTTP/2 GET https://localhost:44375/swagger/swagger-ui-standalone-preset.js - -]
+
+2023-10-21 08:59:26.242 +03:00 [Information] [Request starting HTTP/2 GET https://localhost:44375/swagger/swagger-ui-bundle.js - -]
+
+2023-10-21 08:59:26.271 +03:00 [Information] [Request starting HTTP/2 GET https://localhost:44375/swagger/swagger-ui.css - -]
+
+2023-10-21 08:59:26.278 +03:00 [Information] [Sending file. Request path: '"/swagger-ui-standalone-preset.js"'. Physical path: '"N/A"']
+
+2023-10-21 08:59:26.279 +03:00 [Information] [Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"']
+
+2023-10-21 08:59:26.306 +03:00 [Information] [Request finished HTTP/2 GET https://localhost:44375/swagger/swagger-ui-standalone-preset.js - - - 200 312163 text/javascript 64.3279ms]
+
+2023-10-21 08:59:26.314 +03:00 [Information] [Request finished HTTP/2 GET https://localhost:44375/swagger/swagger-ui.css - - - 200 144929 text/css 42.4199ms]
+
+2023-10-21 08:59:26.318 +03:00 [Information] [Sending file. Request path: '"/swagger-ui-bundle.js"'. Physical path: '"N/A"']
+
+2023-10-21 08:59:26.357 +03:00 [Information] [Request finished HTTP/2 GET https://localhost:44375/swagger/swagger-ui-bundle.js - - - 200 1061536 text/javascript 115.6736ms]
+
+2023-10-21 08:59:26.498 +03:00 [Information] [Request starting HTTP/2 GET https://localhost:44375/swagger/v1/swagger.json - -]
+
+2023-10-21 08:59:26.716 +03:00 [Information] [Request finished HTTP/2 GET https://localhost:44375/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 218.2482ms]
+
+2023-10-21 08:59:44.819 +03:00 [Information] [Request starting HTTP/2 GET https://localhost:44375/Walk/GetAllWalks?pageNumber=1&pageSize=1000 - -]
+
+2023-10-21 08:59:46.428 +03:00 [Information] [Executing endpoint '"NzWalks.API.Controllers.WalkController.GetAllWalks (NzWalks.API)"']
+
+2023-10-21 08:59:46.455 +03:00 [Information] [Route matched with "{action = \"GetAllWalks\", controller = \"Walk\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[System.Collections.Generic.List`1[NzWalks.API.DTOs.WalkDTO]] GetAllWalks(System.String, System.String, System.String, System.Nullable`1[System.Boolean], Int32, Int32)" on controller "NzWalks.API.Controllers.WalkController" ("NzWalks.API").]
+
+2023-10-21 08:59:50.452 +03:00 [Warning] [The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.]
+
+2023-10-21 08:59:50.453 +03:00 [Warning] [The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.]
+
+2023-10-21 08:59:54.889 +03:00 [Information] [Executed DbCommand ("135"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [t].[Id], [t].[Description], [t].[DifficultyId], [t].[Name], [t].[RegionId], [t].[WalkImageUrl], [t].[lengthInKm], [r].[Id], [r].[Code], [r].[Name], [r].[RegionImageUrl], [d].[Id], [d].[Name]
+FROM (
+    SELECT [w].[Id], [w].[Description], [w].[DifficultyId], [w].[Name], [w].[RegionId], [w].[WalkImageUrl], [w].[lengthInKm]
+    FROM [walks] AS [w]
+    ORDER BY (SELECT 1)
+    OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [region] AS [r] ON [t].[RegionId] = [r].[Id]
+INNER JOIN [difficulty] AS [d] ON [t].[DifficultyId] = [d].[Id]"]
+
+2023-10-21 08:59:55.141 +03:00 [Information] [Executed action "NzWalks.API.Controllers.WalkController.GetAllWalks (NzWalks.API)" in 8678.6212ms]
+
+2023-10-21 08:59:55.143 +03:00 [Information] [Executed endpoint '"NzWalks.API.Controllers.WalkController.GetAllWalks (NzWalks.API)"']
+
+2023-10-21 08:59:55.146 +03:00 [Error] [c4962e4c-4452-48a6-9046-b8a0f87f3e43 : Attempted to divide by zero.]
+System.DivideByZeroException: Attempted to divide by zero.
+   at NzWalks.API.Controllers.WalkController.GetAllWalks(String filteron, String filterquery, String sortBy, Nullable`1 isAscending, Int32 pageNumber, Int32 pageSize) in D:\Projects\NzWalks-API\NzWalks\NzWalks.API\Controllers\WalkController.cs:line 30
+   at lambda_method5(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NzWalks.API.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context) in D:\Projects\NzWalks-API\NzWalks\NzWalks.API\Middleware\GlobalExceptionHandlerMiddleware.cs:line 23
+
+2023-10-21 08:59:55.259 +03:00 [Information] [HTTP "GET" "/Walk/GetAllWalks" responded 200 in 10378.1207 ms]
+
+2023-10-21 08:59:55.306 +03:00 [Information] [Request finished HTTP/2 GET https://localhost:44375/Walk/GetAllWalks?pageNumber=1&pageSize=1000 - - - 200 - application/json;+charset=utf-8 10486.7915ms]
+
+2023-10-21 09:06:06.237 +03:00 [Information] [Application is shutting down...]
+
+2023-10-21 09:06:41.544 +03:00 [Warning] [The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.]
+
+2023-10-21 09:06:41.591 +03:00 [Warning] [The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.]
+
+2023-10-21 09:06:44.066 +03:00 [Error] [d1174ea7-15f6-4c18-a55b-ec61d9692881 : Attempted to divide by zero.]
+System.DivideByZeroException: Attempted to divide by zero.
+   at NzWalks.API.Controllers.WalkController.GetAllWalks(String filteron, String filterquery, String sortBy, Nullable`1 isAscending, Int32 pageNumber, Int32 pageSize) in D:\Projects\NzWalks-API\NzWalks\NzWalks.API\Controllers\WalkController.cs:line 30
+   at lambda_method7(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at NzWalks.API.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context) in D:\Projects\NzWalks-API\NzWalks\NzWalks.API\Middleware\GlobalExceptionHandlerMiddleware.cs:line 23
+

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace NzWalks.API.Controllers
 {
@@ -20,13 +21,15 @@ namespace NzWalks.API.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            var result= Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+            Log.Information("Weather Forcasts=>{@result}",result);
+            return result;
         }
     }
 }
